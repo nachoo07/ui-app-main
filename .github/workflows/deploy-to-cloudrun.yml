@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - develop
+      - dev
 
 permissions:
   contents: read
@@ -13,7 +13,7 @@ permissions:
 env:
   # --- CONFIGURACIÓN DE NOMBRES (CAMBIAR ESTO SEGÚN EL REPO) ---
   REPO_NAME: ui-app-main   # OJO: Cambiar a "ui-repo" en el otro proyecto
-  IMAGE_NAME: ui-api       # OJO: Cambiar a "ui" en el otro proyecto
+  IMAGE_NAME: ui-app       # OJO: Cambiar a "ui" en el otro proyecto
   REGION: us-central1
 
 jobs:
