@@ -3,6 +3,13 @@ FROM node:20.17.0 AS ui-builder
 
 WORKDIR /app
 
+# Argumentos de build para variables de entorno del Frontend (Vite)
+ARG VITE_API_URL
+ARG VITE_AUTH_API_URL
+
+ENV VITE_API_URL=$VITE_API_URL
+ENV VITE_AUTH_API_URL=$VITE_AUTH_API_URL
+
 COPY ui/package*.json ui/yarn.lock ./
 RUN yarn install --frozen-lockfile
 

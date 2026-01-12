@@ -35,12 +35,18 @@ jobs:
             echo "WIF_PROVIDER=${{ secrets.PROD_WIF_PROVIDER }}" >> $GITHUB_ENV
             echo "SERVICE_ACCOUNT=${{ secrets.PROD_SERVICE_ACCOUNT }}" >> $GITHUB_ENV
             echo "SERVICE_NAME=${{ env.IMAGE_NAME }}-prod" >> $GITHUB_ENV
+            # URLs de APIs para Producción
+            echo "API_URL=${{ secrets.PROD_API_URL }}" >> $GITHUB_ENV
+            echo "AUTH_API_URL=${{ secrets.PROD_AUTH_API_URL }}" >> $GITHUB_ENV
           else
             echo "🚧 ENVIRONMENT: DEVELOPMENT"
             echo "AUTH_METHOD=json" >> $GITHUB_ENV
             echo "GCP_PROJECT=${{ secrets.GCP_PROJECT_ID }}" >> $GITHUB_ENV
             # Variables de Dev (JSON Key)
             echo "SERVICE_NAME=${{ env.IMAGE_NAME }}-dev" >> $GITHUB_ENV
+            # URLs de APIs para Desarrollo
+            echo "API_URL=${{ secrets.DEV_API_URL }}" >> $GITHUB_ENV
+            echo "AUTH_API_URL=${{ secrets.DEV_AUTH_API_URL }}" >> $GITHUB_ENV
           fi
 
       # 2. AUTENTICACIÓN (HÍBRIDA)
@@ -75,7 +81,13 @@ jobs:
           TAG="${{ github.sha }}"
           IMAGE="us-central1-docker.pkg.dev/${{ env.GCP_PROJECT }}/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:$TAG"
           
-          docker build -t $IMAGE .
+          # VARIABLES DE ENTORNO PARA EL FRONTEND (VITE)
+          # Estas se inyectan en el build de Docker
+          docker build \
+            --build-arg VITE_API_URL="${{ env.API_URL }}" \
+            --build-arg VITE_AUTH_API_URL="${{ env.AUTH_API_URL }}" \
+            -t $IMAGE .
+            
           docker push $IMAGE
           echo "image=$IMAGE" >> $GITHUB_OUTPUT
 
