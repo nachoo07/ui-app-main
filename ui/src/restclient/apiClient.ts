@@ -1,14 +1,22 @@
-import APIClient from "./apiInstance";
+import APIClient, { getApiBaseUrl, getAuthBaseUrl } from "./apiInstance";
 
 /**
- * Instancia compartida de APIClient que detecta automáticamente
- * las URLs de las APIs según el ambiente (dev/prod/local)
- * 
- * NO pases baseURL al instanciar para que use las variables de entorno
+ * Instancia compartida para el API principal (ponti-api)
+ * Detecta automáticamente la URL según el ambiente (dev/prod/local)
  */
 const apiClient = new APIClient({
   timeout: 30000,
-  // baseURL se detecta automáticamente desde getApiBaseUrl()
+  baseURL: getApiBaseUrl(),
+});
+
+/**
+ * Instancia separada para el API de autenticación (auth-api)
+ * Usa VITE_AUTH_API_URL o fallback al API principal
+ */
+const authClient = new APIClient({
+  timeout: 30000,
+  baseURL: getAuthBaseUrl(),
 });
 
 export default apiClient;
+export { authClient };
