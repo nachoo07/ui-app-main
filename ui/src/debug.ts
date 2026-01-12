@@ -3,12 +3,21 @@
  * Run this in the browser console to debug Frontend API connections
  */
 
+declare global {
+  interface Window {
+    debugFrontend: {
+      showEnvVars: () => void;
+      testApiConnection: () => Promise<void>;
+      help: () => void;
+    };
+  }
+}
+
 // Función para mostrar información de variables de entorno
 function showEnvVars() {
   console.group("🔍 Frontend Environment Variables");
   
-  console.log("📍 Current Environment:", import.meta.env.MODE);
-  console.log("🔐 DEV Mode:", import.meta.env.DEV);
+  console.log("📍 DEV Mode:", import.meta.env.DEV);
   console.log("🔨 PROD Mode:", import.meta.env.PROD);
   
   console.group("📡 API URLs");
