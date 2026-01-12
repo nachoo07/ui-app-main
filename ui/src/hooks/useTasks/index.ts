@@ -4,13 +4,10 @@ import useTaskReducer from "./tasksReducer";
 import * as actions from "./actions";
 import { InvoiceData, Metrics, TaskInfo, TaskToSave } from "./types";
 import { SuccessResponse, ErrorResponse } from "../../restclient/types";
-import APIClient from "../../restclient/apiInstance";
+import apiClient from "../../restclient/apiClient";
 import { AxiosError } from "axios";
 
-const request = new APIClient({
-  timeout: 15000,
-  baseURL: "/api",
-});
+const request = apiClient;
 
 const useTask = () => {
   const [

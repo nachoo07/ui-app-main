@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import { AxiosError } from "axios";
 
 import * as actions from "./actions";
-import APIClient from "../../../restclient/apiInstance";
+import apiClient from "../../../restclient/apiClient";
 import { ErrorResponse, SuccessResponse } from "../../../restclient/types";
 import { FormOptions } from "./types";
 import useOptionsReducer from "./reducer";
 
-const request = new APIClient({
-  timeout: 15000,
-  baseURL: "/api",
-});
+const request = apiClient;
 
 const useOptions = () => {
   const [{ options }, dispatch] = useOptionsReducer();

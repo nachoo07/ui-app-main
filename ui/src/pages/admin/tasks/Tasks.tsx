@@ -19,13 +19,10 @@ import InputField from "../../../components/Input/InputField";
 import SelectField from "../../../components/Input/SelectField";
 import { cropColors, laborColors } from "../../../pages/admin/colors";
 import { Column } from "../../../pages/admin/types";
-import APIClient from "../../../restclient/apiInstance";
+import apiClient from "../../../restclient/apiClient";
 import { formatNumberAr } from "../utils";
 
-const request = new APIClient({
-  timeout: 15000,
-  baseURL: "/api",
-});
+const request = apiClient;
 
 const statusConfig: Record<string, { classes: string; icon: JSX.Element }> = {
   Pendiente: {

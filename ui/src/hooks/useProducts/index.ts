@@ -5,12 +5,9 @@ import useProductReducer from "./productsReducer";
 import * as actions from "./actions";
 import { Product, Supply, SupplyResponse } from "./types";
 import { SuccessResponse, ErrorResponse } from "../../restclient/types";
-import APIClient from "../../restclient/apiInstance";
+import apiClient from "../../restclient/apiClient";
 
-const request = new APIClient({
-  timeout: 15000,
-  baseURL: "/api",
-});
+const request = apiClient;
 
 const useProducts = () => {
   const [{ products, result, supplies }, dispatch] = useProductReducer();

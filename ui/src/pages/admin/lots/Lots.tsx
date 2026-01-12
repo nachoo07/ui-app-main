@@ -17,13 +17,10 @@ import InputField from "../../../components/Input/InputField";
 import Button from "../../../components/Button/Button";
 import SelectField from "../../../components/Input/SelectField";
 import { cropColors } from "../colors";
-import APIClient from "../../../restclient/apiInstance";
+import apiClient from "../../../restclient/apiClient";
 import { formatNumberAr } from "../utils";
 
-const request = new APIClient({
-  timeout: 15000,
-  baseURL: "/api",
-});
+const request = apiClient;
 
 const EditableCell = ({
   item,

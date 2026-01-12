@@ -3,15 +3,12 @@ import React from "react";
 import * as actions from "./actions";
 
 import useCustomersReducer from "./useCustomersReducer";
-import APIClient from "../../restclient/apiInstance";
+import apiClient from "../../restclient/apiClient";
 import { CustomerPayload } from "./types";
 import { AxiosError } from "axios";
 import { ErrorResponse, SuccessResponse } from "../../restclient/types";
 
-const request = new APIClient({
-  timeout: 15000,
-  baseURL: "/api",
-});
+const request = apiClient;
 
 const useCustomers = () => {
   const [{ total, customers, processing, error }, dispatch] =

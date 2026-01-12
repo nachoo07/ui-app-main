@@ -2,16 +2,13 @@ import React, { useState } from "react";
 
 import * as actions from "./actions";
 
-import APIClient from "../../restclient/apiInstance";
+import apiClient from "../../restclient/apiClient";
 import { TypeData, CategoryData } from "./types";
 import { AxiosError } from "axios";
 import { ErrorResponse, SuccessResponse } from "../../restclient/types";
 import useCategoriesReducer from "./useCategoriesReducer";
 
-const request = new APIClient({
-  timeout: 15000,
-  baseURL: "/api",
-});
+const request = apiClient;
 
 const useCategories = () => {
   const [processing, setProcessing] = useState(false);

@@ -2,16 +2,13 @@ import React from "react";
 import { AxiosError } from "axios";
 
 import * as actions from "./actions";
-import APIClient from "../../../restclient/apiInstance";
+import apiClient from "../../../restclient/apiClient";
 import { Project, ProjectPayload, ProjectDropdownPayload } from "./types";
 import { ErrorResponse, SuccessResponse } from "../../../restclient/types";
 
 import useProjectReducer from "./projectReducer";
 
-const request = new APIClient({
-  timeout: 15000,
-  baseURL: "/api",
-});
+const request = apiClient;
 
 const useProjects = () => {
   const [

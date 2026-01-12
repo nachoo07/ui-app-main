@@ -5,12 +5,9 @@ import useCommerceReducer from "./commerceReducer";
 import * as actions from "./actions";
 import { CommerceData, CommerceInfoData } from "./types";
 import { SuccessResponse, ErrorResponse } from "../../restclient/types";
-import APIClient from "../../restclient/apiInstance";
+import apiClient from "../../restclient/apiClient";
 
-const request = new APIClient({
-  timeout: 8000,
-  baseURL: "/api",
-});
+const request = apiClient;
 
 const useCommerce = () => {
   const [{ result, commerceInfoList }, dispatch] = useCommerceReducer();

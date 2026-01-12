@@ -11,12 +11,9 @@ import { BaseModal } from "../../../../components/Modal/BaseModal";
 import InputField from "../../../../components/Input/InputField";
 import SelectField from "../../../../components/Input/SelectField";
 import useCategories from "../../../../hooks/useCategories";
-import APIClient from "../../../../restclient/apiInstance";
+import apiClient from "../../../../restclient/apiClient";
 
-const request = new APIClient({
-  timeout: 15000,
-  baseURL: "/api",
-});
+const request = apiClient;
 
 const columns: Column<TaskInfo>[] = [
   { key: "id", header: "ID" },

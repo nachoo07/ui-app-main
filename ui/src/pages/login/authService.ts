@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
 import { jwtDecode } from "jwt-decode";
 
-import APIClient from "../../restclient/apiInstance";
+import apiClient from "../../restclient/apiClient";
 import { DecodedToken, LogoutData, TokenResponse, UserData } from "./types";
 import {
   ErrorResponse,
@@ -9,9 +9,8 @@ import {
   SuccessResponse,
 } from "../../restclient/types";
 
-const restClient = new APIClient({
-  baseURL: "/api",
-});
+// Usa la instancia compartida que detecta automáticamente las URLs
+const restClient = apiClient;
 
 export class AuthService {
   static async login(
