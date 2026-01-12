@@ -99,4 +99,10 @@ jobs:
             --region=${{ env.REGION }} \
             --platform=managed \
             --allow-unauthenticated \
-            --quiet
+            --quiet \
+            --set-env-vars="\
+            NODE_ENV=production,\
+            VITE_API_URL=${{ env.API_URL }},\
+            VITE_AUTH_API_URL=${{ env.AUTH_API_URL }},\
+            API_URL=${{ env.API_URL }},\
+            AUTH_API_URL=${{ env.AUTH_API_URL }}"
