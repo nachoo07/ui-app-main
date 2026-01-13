@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { AxiosError } from "axios";
-import apiClient from "../../restclient/apiClient";
+import APIClient from "../../restclient/apiInstance";
 
 import useStockReducer from "./useStockReducer";
 import * as actions from "./actions";
 import { SuccessResponse, ErrorResponse } from "../../restclient/types";
 import { GetStocksResponse } from "./types";
 
-const request = apiClient;
+const request = new APIClient({
+  timeout: 15000,
+  baseURL: "/api",
+});
 
 const useStock = () => {
   const [{ currentPage, stock, summary }, dispatch] = useStockReducer();

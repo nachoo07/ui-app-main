@@ -10,10 +10,13 @@ import { GetStockItems, Summary } from "../../../hooks/useStock/types";
 import { BaseModal } from "../../../components/Modal/BaseModal";
 import { Column } from "../types";
 import SelectField from "../../../components/Input/SelectField";
-import apiClient from "../../../restclient/apiClient";
+import APIClient from "../../../restclient/apiInstance";
 import { formatNumberAr } from "../utils";
 
-const request = apiClient;
+const request = new APIClient({
+  timeout: 15000,
+  baseURL: "/api",
+});
 
 const EditableCell = ({
   item,

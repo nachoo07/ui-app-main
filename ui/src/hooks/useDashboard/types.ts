@@ -39,6 +39,7 @@ export interface InvestorItem {
   investor_id: number;
   investor_name: string;
   share_pct: string;
+  contributions_progress_pct: string;
 }
 
 export interface OperatingResultMetric {

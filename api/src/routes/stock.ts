@@ -26,7 +26,8 @@ router.get("/export/:id", async (req, res) => {
     };
 
     const response = await apiClient.get<any>(
-      `/stocks/export/all`,
+      `/projects/${project_id}/stocks/export`,
+      //`/stocks/export/all`,
       { headers, responseType: "arraybuffer" }
     );
 
@@ -264,3 +265,5 @@ router.put("/:id/:idStock", async (req: Request, res: Response) => {
 });
 
 export default router;
+
+

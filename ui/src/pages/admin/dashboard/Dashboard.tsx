@@ -59,7 +59,7 @@ function DashboardIndicators({ dashboard }: DashboardIndicatorsProps) {
         value={
           metrics.investor_contributions.items
             ? metrics.investor_contributions.items
-              .map((investor) => `${investor.share_pct}%`)
+              .map((investor) => `${investor.contributions_progress_pct}%`)
               .join(" - ")
             : "N/A"
         }

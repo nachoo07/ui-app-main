@@ -2,13 +2,16 @@ import React from "react";
 
 import * as actions from "./actions";
 
-import apiClient from "../../restclient/apiClient";
+import APIClient from "../../restclient/apiInstance";
 import { Payload } from "./types";
 import { AxiosError } from "axios";
 import { ErrorResponse, SuccessResponse } from "../../restclient/types";
 import useProvidersReducer from "./useProvidersReducer";
 
-const request = apiClient;
+const request = new APIClient({
+  timeout: 15000,
+  baseURL: "/api",
+});
 
 const useProviders = () => {
   const [{ total, providers, processing, error }, dispatch] =

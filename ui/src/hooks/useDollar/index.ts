@@ -5,9 +5,12 @@ import useDollarReducer from "./dollarReducer";
 import * as actions from "./actions";
 import { DollarData } from "./types";
 import { SuccessResponse, ErrorResponse } from "../../restclient/types";
-import apiClient from "../../restclient/apiClient";
+import APIClient from "../../restclient/apiInstance";
 
-const request = apiClient;
+const request = new APIClient({
+  timeout: 15000,
+  baseURL: "/api",
+});
 
 const useDollar = () => {
   const [{ dollars, result }, dispatch] = useDollarReducer();

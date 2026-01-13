@@ -3,11 +3,14 @@ import { AxiosError } from "axios";
 
 import * as actions from "./actions";
 import useLotsReducer from "./useLotsReducer";
-import apiClient from "../../restclient/apiClient";
+import APIClient from "../../restclient/apiInstance";
 import { Crop, LotsDataUpdate, Payload, LotKPIs } from "./types";
 import { ErrorResponse, SuccessResponse } from "../../restclient/types";
 
-const request = apiClient;
+const request = new APIClient({
+  timeout: 15000,
+  baseURL: "/api",
+});
 
 const useLots = () => {
   const [{ lots, pageInfo, crops, result, kpis }, dispatch] = useLotsReducer();

@@ -1,13 +1,16 @@
 import React from "react";
 
 import * as actions from "./actions";
-import apiClient from "../../restclient/apiClient";
+import APIClient from "../../restclient/apiInstance";
 import { UserData, UserNew } from "./types";
 import { ErrorResponse, SuccessResponse } from "../../restclient/types";
 import { AxiosError } from "axios";
 import useUserReducer from "./userReducer";
 
-const request = apiClient;
+const request = new APIClient({
+  timeout: 15000,
+  baseURL: "/api",
+});
 
 const useUsers = () => {
   const [

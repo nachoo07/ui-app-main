@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { AxiosError } from "axios";
-import apiClient from "../../restclient/apiClient";
+import APIClient from "../../restclient/apiInstance";
 
 import * as actions from "./actions";
 import useOrdersReducer from "./ordersReducer";
 import { SuccessResponse, ErrorResponse } from "../../restclient/types";
 import { Metrics, Workorder, WorkorderData } from "./types";
 
-const request = apiClient;
+const request = new APIClient({
+  timeout: 15000,
+  baseURL: "/api",
+});
 
 const useOrders = () => {
   const [

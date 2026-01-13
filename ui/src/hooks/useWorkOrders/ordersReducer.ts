@@ -61,12 +61,7 @@ const ordersReducer = (state: typeof initialState, action: Action) => {
     case actions.SET_METRICS:
       return {
         ...state,
-        metrics: {
-          surface_ha: Number(action.payload.surface_ha) || 0,
-          liters: Number(action.payload.liters) || 0,
-          kilograms: Number(action.payload.kilograms) || 0,
-          direct_cost: Number(action.payload.direct_cost) || 0,
-        },
+        metrics: action.payload,
       };
     default:
       return state;

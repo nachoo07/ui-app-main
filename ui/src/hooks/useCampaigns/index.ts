@@ -2,13 +2,16 @@ import React from "react";
 
 import * as actions from "./actions";
 
-import apiClient from "../../restclient/apiClient";
+import APIClient from "../../restclient/apiInstance";
 import { Payload } from "./types";
 import { AxiosError } from "axios";
 import { ErrorResponse, SuccessResponse } from "../../restclient/types";
 import useCampaignsReducer from "./useCampaignsReducer";
 
-const request = apiClient;
+const request = new APIClient({
+  timeout: 15000,
+  baseURL: "/api",
+});
 
 const useCampaigns = () => {
   const [{ total, campaigns, processing, error }, dispatch] =

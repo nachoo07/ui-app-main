@@ -16,10 +16,13 @@ import { BaseModal } from "../../../components/Modal/BaseModal";
 import Button from "../../../components/Button/Button";
 import UpdateOrder from "./UpdateOrder";
 import { cropColors, laborColors } from "../../../pages/admin/colors";
-import apiClient from "../../../restclient/apiClient";
+import APIClient from "../../../restclient/apiInstance";
 import { formatNumberAr } from "../utils";
 
-const request = apiClient;
+const request = new APIClient({
+  timeout: 15000,
+  baseURL: "/api",
+});
 
 function OrdersHeader({
   ordersAmount,

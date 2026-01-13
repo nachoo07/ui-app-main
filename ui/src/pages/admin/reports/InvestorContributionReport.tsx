@@ -21,6 +21,15 @@ const contributionRowsToRender: RowToRender[] = [
     },
   },
   {
+    label: "Fertilizantes",
+    key: "fertilizers",
+    valueFormat: {
+      totalInvested: (value) => `u$${ formatNumberAr(value) }`,
+      totalPerHa: (value) => `${ formatNumberAr(value) } u$/Ha`,
+      investor: (value, percentage) => `u$${ formatNumberAr(value) } - ${ percentage }%`,
+    },
+  },
+  {
     label: "Semilla",
     key: "seeds",
     valueFormat: {

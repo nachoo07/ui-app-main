@@ -12,24 +12,6 @@ declare module "axios" {
   }
 }
 
-// Detectar la URL base de la API según las variables de entorno de Vite
-const getApiBaseUrl = (): string => {
-  // En producción, usa las variables de entorno inyectadas por Vite
-  if (import.meta.env.VITE_API_URL) {
-    return import.meta.env.VITE_API_URL;
-  }
-  // En desarrollo, usa localhost
-  return import.meta.env.DEV ? "http://localhost:3000/api" : "/api";
-};
-
-// URL para refrescar el token (puede estar en un API diferente)
-const getAuthBaseUrl = (): string => {
-  if (import.meta.env.VITE_AUTH_API_URL) {
-    return import.meta.env.VITE_AUTH_API_URL;
-  }
-  return getApiBaseUrl();
-};
-
 const refreshTokenUrl = "/auth/access-token";
 
 type HttpClientOptions = {
@@ -44,7 +26,7 @@ class APIClient {
   constructor(options: HttpClientOptions) {
     this.accessToken = null;
     this.client = axios.create({
-      baseURL: options.baseURL || getApiBaseUrl(),
+      baseURL: options.baseURL || "/api",
       timeout: options.timeout || 30000,
     });
 
@@ -150,4 +132,3 @@ class APIClient {
 }
 
 export default APIClient;
-export { getApiBaseUrl, getAuthBaseUrl };

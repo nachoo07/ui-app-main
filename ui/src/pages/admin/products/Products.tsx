@@ -10,10 +10,13 @@ import useSupplyMovements from "../../../hooks/useSupplyMovement";
 import { SupplyMovement } from "../../../hooks/useSupplyMovement/types";
 import { Summary } from "../../../hooks/useSupplyMovement/types";
 import { Column } from "../types";
-import apiClient from "../../../restclient/apiClient";
+import APIClient from "../../../restclient/apiInstance";
 import { formatNumberAr } from "../utils";
 
-const request = apiClient;
+const request = new APIClient({
+  timeout: 15000,
+  baseURL: "/api",
+});
 
 function ItemsIndicators({ summary }: { summary: Summary }) {
   return (

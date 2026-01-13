@@ -5,9 +5,12 @@ import useReportingReducer from "./useReportingReducer.ts";
 import * as actions from "./actions";
 import { FieldCropReportData, InvestorContributionReportData, SummaryResultsReportData } from "./types";
 import { SuccessResponse, ErrorResponse } from "../../restclient/types";
-import apiClient from "../../restclient/apiClient";
+import APIClient from "../../restclient/apiInstance";
 
-const request = apiClient;
+const request = new APIClient({
+  timeout: 15000,
+  baseURL: "/api",
+});
 
 const useReporting = () => {
   const [{
